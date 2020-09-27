@@ -15,16 +15,41 @@
  */
 
 $white_opaque: rgba(250, 250, 250, 0.3);
+$dark: #1F7972;
 
 .container {
-  width: 50%;
-  max-width: 750px;
-  background: $white_opaque;
-  margin: 3em auto 0 auto;
-  border-radius: 7px;
-  -webkit-box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.03);
-  padding: 0.8em 0;
+	width: 60%;
+	background: $white_opaque;
+	margin: 3em auto 0 auto;
+	border-radius: 7px;
+	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
+	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
+	padding: 1em 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: -webkit-linear-gradient(40deg, #4CB8C4 10%, #EAECC6 100%);
+  background:    -moz-linear-gradient(40deg, #4CB8C4 10%, #EAECC6 100%);
+  background:     -ms-linear-gradient(40deg, #4CB8C4 10%, #EAECC6 100%);
+  background:      -o-linear-gradient(40deg, #4CB8C4 10%, #EAECC6 100%);
+  background:         linear-gradient(40deg, #4CB8C4 10%, #EAECC6 100%);
+}
+
+.table_index {
+  margin: auto;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+th,td {
+  width: 20%;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: left;
 }
 
 #notice {
@@ -49,6 +74,9 @@ $white_opaque: rgba(250, 250, 250, 0.3);
   text-align: center;
   font-size: 1em;
 }
+
+a:visited {color:#000;}
+a:hover   {color:white;}
 
 .field,
 .actions {
