@@ -1,17 +1,30 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer.name %>
-</p>
+<div class="field">
+  <p>
+    <strong>Customer:</strong>
+    <%= @order.customer.name %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status ? 'SUBMITTED' : 'DRAFT' %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @order.status ? 'SUBMITTED' : 'DRAFT' %>
+  </p>
+
+  <p>
+    <strong>Product:</strong>
+    <% @order.products.each do | product | %>
+      <div>
+        <%= product.name %>
+      </div>
+    <% end %>
+  </p>
+</div>
 
 <div class='links'>
-  <%= link_to 'Edit', edit_order_path(@order) %> |
+  <% if !@order.status %>
+    <%= link_to 'Edit', edit_order_path(@order) %> |
+  <% end %>
   <%= link_to 'Back', orders_path %>
 </div>

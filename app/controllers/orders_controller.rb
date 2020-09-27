@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :submit]
 
   # GET /orders
   # GET /orders.json
@@ -59,6 +59,11 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def submit
+    @order.update(status: true)
+    redirect_to orders_path
   end
 
   private
