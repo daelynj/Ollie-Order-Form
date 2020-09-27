@@ -8,8 +8,10 @@
       <th>Order #</th>
       <th>Customer</th>
       <th>Product</th>
+      <th>Sub-total</th>
+      <th>Total</th>
       <th>Status</th>
-      <th colspan="4"></th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -27,6 +29,8 @@
             <% end %>
           <% end %>
         </td>
+        <td>$<%= order.cost %></td>
+        <td>$<%= order.cost + order.cost * 0.15 %></td>
         <td><%= order.status ? 'SUBMITTED' : 'DRAFT' %></td>
         <div class='links'>
           <td><%= link_to 'Show', order %></td>

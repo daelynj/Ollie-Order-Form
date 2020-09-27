@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
     order_params[:line_items].each do |item|
       if !item.empty?
         @order.line_items.new(:product_id => item, :order_id => @order.id)
+        @order.update(cost: @order.cost + @order.line_items[0].product.price)
       end
     end
 
@@ -51,12 +52,15 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     @order.line_items.destroy_all
+    @order.update(cost: 0)
 
     order_params[:line_items].each do |item|
       if !item.empty?
         @order.line_items.create(:product_id => item, :order_id => @order.id)
+        @order.update(cost: @order.cost + @order.line_items[0].product.price)
       end
     end
+    binding.pry
 
     respond_to do |format|
       format.html { redirect_to @order, notice: 'Order was successfully updated.' }

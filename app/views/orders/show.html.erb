@@ -20,6 +20,16 @@
       </div>
     <% end %>
   </p>
+
+  <p>
+    <strong>Sub-total:</strong>
+    <div>$<%= @order.cost %></div>
+  </p>
+
+    <p>
+    <strong>Total:</strong>
+    <div>$<%= @order.cost + @order.cost * 0.15 %></div>
+  </p>
 </div>
 
 <div class='links'>
