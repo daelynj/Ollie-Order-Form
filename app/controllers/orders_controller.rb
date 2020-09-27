@@ -21,12 +21,20 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @customers = Customer.all
+    @products = Product.all
   end
 
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(:customer_id => order_params[:customer_id])
+
+    order_params[:line_items].each do |item|
+      if !item.empty?
+        @order.line_items.new(:product_id => item, :order_id => @order.id)
+      end
+    end
 
     respond_to do |format|
       if @order.save
@@ -53,16 +61,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
-  def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -71,6 +69,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:customer_id, :status)
+      params.require(:order).permit!
     end
 end

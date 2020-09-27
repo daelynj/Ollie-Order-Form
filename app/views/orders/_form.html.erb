@@ -6,7 +6,7 @@
 
   <div class='field'>
     <%= form.label :product %>
-    <%= form.select('product', options_for_select(@products.collect {|product| [ product.name ] }), { :options => {}}, multiple: true, size: @products.length) %>
+    <%= form.select :line_items, options_for_select(@products.collect {| product | [ product.name, product.id ] }), { :options => {}}, multiple: true, size: @products.length %>
   </div>
 
   <div class='actions'>
