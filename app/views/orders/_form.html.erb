@@ -1,17 +1,15 @@
 <%= form_with(model: order, local: true) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+  <div class='field'>
+    <%= form.label :customer %>
+    <%= form.select 'customer', options_for_select(@customers.collect{ |customer| customer.name }) %>
+  </div>
 
-      <ul>
-        <% order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class='field'>
+    <%= form.label :product %>
+    <%= form.select('product', options_for_select(@products.collect {|product| [ product.name ] }), { :options => {}}, multiple: true, size: @products.length) %>
+  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class='actions'>
+    <%= form.submit('Create Order') %>
   </div>
 <% end %>
