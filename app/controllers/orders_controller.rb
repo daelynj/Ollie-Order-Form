@@ -85,7 +85,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    @order.update(cancelled: true)
+    @order.update(canceled: true)
 
     respond_to do |format|
       format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }

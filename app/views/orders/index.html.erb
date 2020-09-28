@@ -31,14 +31,14 @@
         </td>
         <td>$<%= order.cost %></td>
         <td>$<%= order.cost + order.cost * 0.15 %></td>
-        <% if order.cancelled %>
-          <td><%= 'CANCELLED' %></td>
+        <% if order.canceled %>
+          <td><%= 'CANCELED' %></td>
         <% else %>
           <td><%= order.submitted ? 'SUBMITTED' : 'DRAFT' %></td>
         <% end %>
         <div class='links'>
           <td><%= link_to 'Show', order %></td>
-          <% if !order.submitted && !order.cancelled %>
+          <% if !order.submitted && !order.canceled %>
             <td><%= link_to 'Edit', edit_order_path(order) %></td>
             <td><%= link_to 'Submit', submit_path(order.id), method: 'put' %></td>
             <td><%= link_to 'Cancel', cancel_path(order.id), method: 'put' %></td>
