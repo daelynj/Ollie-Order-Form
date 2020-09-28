@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :submit]
+  before_action :set_order, only: [:show, :edit, :update, :submit, :cancel]
   
   # GET /orders
   # GET /orders.json
@@ -77,6 +77,15 @@ class OrdersController < ApplicationController
     end
 
     @order.update(submitted: true)
+
+    respond_to do |format|
+      format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
+      format.json { render :show, status: :ok, location: orders_path }
+    end
+  end
+
+  def cancel
+    @order.update(cancelled: true)
 
     respond_to do |format|
       format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
