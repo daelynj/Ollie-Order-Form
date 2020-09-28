@@ -60,7 +60,6 @@ class OrdersController < ApplicationController
         @order.update(cost: @order.cost + @order.line_items[0].product.price)
       end
     end
-    binding.pry
 
     respond_to do |format|
       format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -77,7 +76,7 @@ class OrdersController < ApplicationController
       return
     end
 
-    @order.update(status: true)
+    @order.update(submitted: true)
 
     respond_to do |format|
       format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
